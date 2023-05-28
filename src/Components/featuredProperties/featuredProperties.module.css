@@ -39,7 +39,7 @@
     margin: 20px 20px;
 }
 .container > .grid > .box > .image > img{
-height: 230px;
+width: 100%;
 }
 .container > .grid > .box > .text {
     padding: 30px;
