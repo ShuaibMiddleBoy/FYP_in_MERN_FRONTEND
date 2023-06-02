@@ -3,6 +3,7 @@ import style from "./navbar.module.css";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import logo from "./asset/logo.png"
+import Signin from "../signin/Signin";
 
 const Navbar = () => {
   return (
@@ -30,11 +31,12 @@ const Navbar = () => {
           </ul>
         </div>
         <div className={style.right}>
-          <Link to="/signin">
+        <Signin/>
+          {/* <Link to="/signin">
           <Button className={style.login} variant="contained">
               Login
             </Button>
-          </Link>
+          </Link> */}
           <Link to="/post_property">
             <Button className={style.postProperty} variant="contained">
               Post Property

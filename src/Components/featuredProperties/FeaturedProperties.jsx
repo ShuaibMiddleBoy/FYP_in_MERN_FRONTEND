@@ -9,7 +9,6 @@ import img4 from "./asset/p-4.png";
 import img5 from "./asset/p-5.png";
 import img6 from "./asset/p-6.png";
 import request from "../../util/fetchAPI";
-import { Link } from '@mui/material';
 
 const FeaturedProperties = () => {
     const [featuredProperties, setFeaturedProperties] = useState([]);

@@ -100,7 +100,7 @@ const Footer = () => {
             </div>
         </div>
         <div className={style.createdBy}>
-            <p>&copy;perfectviews.com 2023. All rights reserved</p>
+            <p>&copy;perfectviews.com {new Date().getFullYear()}. All rights reserved</p>
         </div>
     </div>
   )

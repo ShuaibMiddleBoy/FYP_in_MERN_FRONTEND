@@ -10,7 +10,7 @@ import Properties from "./Components/properties/Properties";
 import PropertyDetails from "./Components/propertyDetails/PropertyDetails";
 import Signin from "./Components/signin/Signin";
 import Signup from "./Components/signup/Signup";
-
+import About from "./about/About";
 const App = () => {
   return (
     <>
@@ -30,6 +30,14 @@ const App = () => {
             }
           />
 
+<Route
+            path="/about"
+            element={
+              <>
+                <Navbar /> <About/> <Footer />
+              </>
+}
+          />
           <Route
             path="/properties"
             element={
