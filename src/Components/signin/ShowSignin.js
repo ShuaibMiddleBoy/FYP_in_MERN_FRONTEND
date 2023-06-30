@@ -34,9 +34,9 @@ const ShowModel = ({ closeModel }) => {
         body : JSON.stringify({email, password})
       });
 const data = await res.json();
-if(data.auth){
-  localStorage.setItem("token", JSON.stringify(data.auth));
-  localStorage.setItem("user", JSON.stringify(data.findUser))
+console.log(data);
+if(data){
+  localStorage.setItem("token1", data);
 }
     } catch (error) {
       console.log(error);

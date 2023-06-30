@@ -4,7 +4,6 @@ import style from "./signup.module.css";
 import { Link } from "react-router-dom";
 // import request from "../../util/fetchAPI";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 const Signup = () => {
 const navigate = useNavigate();
@@ -13,7 +12,7 @@ const navigate = useNavigate();
     email : "",
     profileImage : "",
     password : "",
-    confirmPassword : ""
+    cPassword : ""
 
 
   })
@@ -29,39 +28,34 @@ const navigate = useNavigate();
   }
 
 
-  const handleImage = (e) => {
-        setUser((preValue)=>{
-          return {
-            ...preValue,
-            profileImage : e.target.files[0]
-          }
-        })
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("profileImage", user.profileImage);
-    formData.append("userName", user.userName);
-    formData.append("email", user.email);
-    formData.append("password", user.password);
-    formData.append("confirmPassword", user.confirmPassword);
+    const {userName,
+    email,
+    profileImage ,
+    password ,
+    cPassword 
+} = user;
 
+    const res = await fetch("http://localhost:8000/auth/register", {
+      method : "POST",
+      headers : {
+        "Content-Type" : "application/json"
+      },
+      body : JSON.stringify({userName,
+        email,
+        profileImage ,
+        password ,
+        cPassword 
+    })
+    })
 
-    try {
-    const data =   await axios.post("http://localhost:8000/auth/register", formData);
-      alert("User register successfuly!");     
-      // navigate("/");
-       const res = data.data;
-       console.log(res);
-      if(res.auth){
-        localStorage.setItem("token", JSON.stringify(res.auth));
-        localStorage.setItem("user", JSON.stringify(data.data))
-      }
-    } catch (error) {
-      console.log(error.message);
+    const data = await res.json();
+    if(data.tokens[0].token){
+      localStorage.setItem("token", data.tokens[0].token);
     }
+
   }
   return (
     <>
@@ -106,7 +100,6 @@ const navigate = useNavigate();
                   name="profileImage"
                   accept=".jpg, .jpeg, .png"
                   // style={{ display: "none" }}
-                  onChange={handleImage}
                 />
               </div>
               <div>
@@ -122,14 +115,14 @@ const navigate = useNavigate();
                 />
               </div>
               <div>
-                <label htmlFor="confirmPassword">
+                <label htmlFor="cPassword">
                   Confirm Password<span>*</span>
                 </label>
                 <input
                   type="password"
-                  name="confirmPassword"
+                  name="cPassword"
                   placeholder="Enter Confirm Password"
-                  value={user.confirmPassword}
+                  value={user.cPassword}
                   onChange={handleInput}
                 />
               </div>
