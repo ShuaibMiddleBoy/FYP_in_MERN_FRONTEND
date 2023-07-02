@@ -1,55 +1,28 @@
-
-.container{
-    width: 100vw;
-    height: 60px;
+.container {
+    background-color: #F7F9FC;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid lightgray;
-    padding: 0px 50px;
-    background-color:#F7F9FC;
-    background-size: 100% 100%;
-    /* box-shadow: 0px 2px 5px lightgray; */
-    position: sticky;
-    top: 0;
-    left: 0;
-    z-index: 9999;
+    padding: 10px 30px;
 }
 
-.container > .center > ul{ 
+.container > .center > ul {
     display: flex;
-    gap: 20px;
-}
-
-.container > .center > ul > li {
     list-style: none;
+    gap: 15px;
 }
 
-
-.container > .center > ul > li > a {
+.container > .center > ul > li > a{
     text-decoration: none;
-    font-weight: 500;
-    font-size: 18px;
-    color: #4E4E4E;
 }
 
-.container > .right {
+.container > .right > ul {
     display: flex;
-    gap: 10px;
+    list-style: none;
+    gap: 15px;
 }
-.container > .right > a {
+
+
+.container > .right > ul > li > a{
     text-decoration: none;
-    
-}
-
-.container > .right > a > .login{
-    background-color: #D3D3D3;
-    color: #4E4E4E;
-    font-weight: 600;
-    text-transform: capitalize;
-}
-
-.container > .right > a > .postProperty{
-    background-color: #33A137;
-    text-transform: capitalize;
 }

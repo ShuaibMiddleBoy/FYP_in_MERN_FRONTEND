@@ -2,61 +2,83 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/navbar/Navbar";
 import Hero from "./Components/hero/Hero";
-import PopularProperties from "./Components/popularProperties/PopularProperties";
 import FeaturedProperties from "./Components/featuredProperties/FeaturedProperties";
-import NewsLetter from "./Components/newsLetter/NewsLetter";
 import Footer from "./Components/footer/Footer";
 import Properties from "./Components/properties/Properties";
 import PropertyDetails from "./Components/propertyDetails/PropertyDetails";
 import Signin from "./Components/signin/Signin";
 import Signup from "./Components/signup/Signup";
 import About from "./about/About";
+import PrivateComponent from "./Components/PrivateComponent";
+import Home from "./home/Home";
 const App = () => {
   return (
     <>
       <Router>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route
-            path="/"
+            path="/contact"
             element={
               <>
                 <Navbar />
                 <Hero />
-                <PopularProperties />
-                <FeaturedProperties />
-                <NewsLetter />
+                <h1>I AM CONTACT</h1>
                 <Footer />
               </>
             }
           />
-
-<Route
+          <Route
             path="/about"
             element={
               <>
-                <Navbar /> <About/> <Footer />
+              <About />
               </>
-}
+            }
           />
+          <Route element={<PrivateComponent />}>
+            <Route
+              path="/properties"
+              element={
+                <>
+                  <Navbar /> <Properties /> <Footer />
+                </>
+              }
+            />
+            <Route
+              path="/propertyDetails/:id"
+              element={
+                <>
+                  <Navbar /> <PropertyDetails /> <Footer />
+                </>
+              }
+            />
+            <Route
+              path="/featured"
+              element={
+                <>
+                  <Navbar /> <FeaturedProperties /> <Footer />
+                </>
+              }
+            />
+          </Route>
           <Route
-            path="/properties"
+            path="/signin"
             element={
               <>
-                <Navbar /> <Properties /> <Footer />
+                <Navbar /> <Signin />{" "}
               </>
             }
           />
           <Route
-            path="/propertyDetails/:id"
+            path="/signup"
             element={
               <>
-                <Navbar /> <PropertyDetails /> <Footer />
+                {" "}
+                <Navbar /> <Signup /> <Footer />{" "}
               </>
             }
           />
-
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/signup" element={<Signup />} />
         </Routes>
       </Router>
     </>

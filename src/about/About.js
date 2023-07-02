@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import style from "./about.module.css";
 import heroImg from "./asset/hero.jpg";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../Components/navbar/Navbar";
+import Footer from "../Components/footer/Footer";
 
 const About = () => {
   const navigate = useNavigate();
@@ -25,6 +27,7 @@ const About = () => {
   }, []);
   return (
     <>
+    <Navbar/>
       <div className={style.hero}>
         <img src={heroImg} alt="" />
         <div className={style.overlay}>
@@ -111,6 +114,7 @@ const About = () => {
         <h3>PROPERTY LEGAL ADVICE</h3>
         <p>We have a legal team specialized in all matters relating to the real estate sale, purchase, and land issues. We offer our clients professional, honest, and confidential professional legal advice.</p>
       </div>
+      <Footer/>
     </>
   );
 };

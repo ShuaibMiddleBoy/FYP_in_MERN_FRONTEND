@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import familyPic from "./asset/familyPic.jpg";
 import style from "./signup.module.css";
 import { Link } from "react-router-dom";
@@ -6,57 +6,57 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
-const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const auth = localStorage.getItem("user");
+    if (auth) {
+      navigate("/");
+    }
+  });
   const [user, setUser] = useState({
     userName: "",
-    email : "",
-    profileImage : "",
-    password : "",
-    cPassword : ""
+    email: "",
+    profileImage: "",
+    password: "",
+    cPassword: "",
+  });
 
-
-  })
-  
   const handleInput = (e) => {
-    const {value, name} = e.target;
-    setUser((preValue)=>{
-      return{
+    const { value, name } = e.target;
+    setUser((preValue) => {
+      return {
         ...preValue,
-        [name] : value
-      }
-    })
-  }
-
+        [name]: value,
+      };
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const {userName,
-    email,
-    profileImage ,
-    password ,
-    cPassword 
-} = user;
+    const { userName, email, profileImage, password, cPassword } = user;
 
     const res = await fetch("http://localhost:8000/auth/register", {
-      method : "POST",
-      headers : {
-        "Content-Type" : "application/json"
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-      body : JSON.stringify({userName,
+      body: JSON.stringify({
+        userName,
         email,
-        profileImage ,
-        password ,
-        cPassword 
-    })
-    })
+        profileImage,
+        password,
+        cPassword,
+      }),
+    });
 
     const data = await res.json();
-    if(data.tokens[0].token){
-      localStorage.setItem("token", data.tokens[0].token);
+    localStorage.setItem("user", JSON.stringify(data));
+    if (data.userName) {
+      navigate("/");
     }
-
-  }
+  };
   return (
     <>
       <div className={style.container}>
