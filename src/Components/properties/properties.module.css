@@ -1,0 +1,63 @@
+
+.wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 0px;
+    background-color: #F7F9FC;
+}
+
+
+.wrapper > .items{
+    /* height: 400px; */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+a {
+    text-decoration: none;
+    color: rgb(39, 39, 39);
+}
+.wrapper > .items > a > .item{
+    border: 1px solid black;
+    border: none;
+    box-shadow: 0 0 20px 0 rgba(112,121,138,.18);
+}
+
+.wrapper > .items > a > .item > .text{
+    padding: 30px;
+}
+.wrapper > .items > a > .item > .text > .category{
+    display: flex;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrapper > .items >  a > .item  > .text > .category a {
+    color: gray;
+}
+
+.wrapper > .items > a >  .item > .text > h4{
+    margin-top: 10px;
+    margin-left: 7px;
+    font-weight: 500;
+}
+
+.wrapper > .items >  a > .item > .text p{
+    color: #72809d;
+    display: flex;
+}
+
+.wrapper > .items > a >  .item > .bottom{
+    background-color: #33A137;
+    padding: 10px 0px;
+}
+
+.bottom span{
+    display: block;
+    color: white;
+    text-align: center;
+}

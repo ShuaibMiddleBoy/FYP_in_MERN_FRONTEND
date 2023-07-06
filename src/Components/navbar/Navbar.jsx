@@ -2,6 +2,7 @@ import React from "react";
 import style from "./navbar.module.css";
 import { Link } from "react-router-dom";
 import logo from "./asset/logo.png";
+import Button from '@mui/material/Button';
 
 const Navbar = () => {
   const auth = localStorage.getItem("user");
@@ -42,8 +43,11 @@ const Navbar = () => {
           <div className={style.right}>
           <ul>
           <li>
-            <Link onClick={logout} to="/">Logout</Link>
+            <Link onClick={logout} to="/"><Button variant="contained" style={{backgroundColor:"lightgray", color:"black"}}>Logout</Button></Link>
             </li>
+            <li>
+                <Link to={"/add-property"}><Button variant="contained" style={{backgroundColor:"#33a137"}}>Add Property</Button></Link>
+              </li>
             </ul>
           </div>
           </>  
@@ -65,10 +69,10 @@ const Navbar = () => {
             <div className={style.right}>
             <ul>
                     <li>
-                      <Link to={"/signin"}>SignIn</Link>
+                      <Link to={"/signin"}><Button variant="contained" style={{backgroundColor:"lightgray", color:"black"}}>Signin</Button></Link>
                     </li>
                     <li>
-                      <Link to={"/signup"}>SignUp</Link>
+                      <Link to={"/signup"}><Button variant="contained" style={{backgroundColor:"lightgray", color:"black"}}>Signup</Button></Link>
                     </li>
                   </ul> 
             </div>

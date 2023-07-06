@@ -11,6 +11,7 @@ import Signup from "./Components/signup/Signup";
 import About from "./about/About";
 import PrivateComponent from "./Components/PrivateComponent";
 import Home from "./home/Home";
+import AddProperty from "./Components/addProperty/Addproperty";
 const App = () => {
   return (
     <>
@@ -32,7 +33,7 @@ const App = () => {
             path="/about"
             element={
               <>
-              <About />
+                <About />
               </>
             }
           />
@@ -46,7 +47,7 @@ const App = () => {
               }
             />
             <Route
-              path="/propertyDetails/:id"
+              path="/property-details/:id"
               element={
                 <>
                   <Navbar /> <PropertyDetails /> <Footer />
@@ -58,6 +59,16 @@ const App = () => {
               element={
                 <>
                   <Navbar /> <FeaturedProperties /> <Footer />
+                </>
+              }
+            />
+            <Route
+              path="/add-property"
+              element={
+                <>
+                  <Navbar />
+                  <AddProperty />
+                  <Footer />
                 </>
               }
             />
@@ -74,8 +85,7 @@ const App = () => {
             path="/signup"
             element={
               <>
-                {" "}
-                <Navbar /> <Signup /> <Footer />{" "}
+                <Navbar /> <Signup /> <Footer />
               </>
             }
           />
