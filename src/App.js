@@ -6,12 +6,14 @@ import FeaturedProperties from "./Components/featuredProperties/FeaturedProperti
 import Footer from "./Components/footer/Footer";
 import Properties from "./Components/properties/Properties";
 import PropertyDetails from "./Components/propertyDetails/PropertyDetails";
-import Signin from "./Components/signin/Signin";
+import Login from "./Components/login/Login";
 import Signup from "./Components/signup/Signup";
 import About from "./about/About";
 import PrivateComponent from "./Components/PrivateComponent";
 import Home from "./home/Home";
 import AddProperty from "./Components/addProperty/Addproperty";
+import UpdateProperty from "./Components/upadeteProperty/UpdateProperty";
+import Contact from "./Components/contact/Contact";
 const App = () => {
   return (
     <>
@@ -23,9 +25,8 @@ const App = () => {
             element={
               <>
                 <Navbar />
-                <Hero />
-                <h1>I AM CONTACT</h1>
-                <Footer />
+                <Contact/>
+                <Footer/>
               </>
             }
           />
@@ -55,6 +56,14 @@ const App = () => {
               }
             />
             <Route
+              path="/update-property/:id"
+              element={
+                <>
+                  <Navbar /> <UpdateProperty /> <Footer />
+                </>
+              }
+            />
+            <Route
               path="/featured"
               element={
                 <>
@@ -77,18 +86,11 @@ const App = () => {
             path="/signin"
             element={
               <>
-                <Navbar /> <Signin />{" "}
+                 <Login />
               </>
             }
           />
-          <Route
-            path="/signup"
-            element={
-              <>
-                <Navbar /> <Signup /> <Footer />
-              </>
-            }
-          />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </Router>
     </>

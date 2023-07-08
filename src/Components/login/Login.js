@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import familyPic from "./asset/familyPic.jpg";
 import { Button } from "@mui/material";
-import style from "./signup.module.css";
+import style from "./login.module.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-const Signup = () => {
+const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,11 +14,8 @@ const Signup = () => {
     }
   });
   const [user, setUser] = useState({
-    userName: "",
     email: "",
-    profileImage: "",
     password: "",
-    cPassword: "",
   });
 
   const handleInput = (e) => {
@@ -33,28 +30,27 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { email, password } = user;
+    console.log(email, password);
 
-    const { userName, email, profileImage, password, cPassword } = user;
-
-    const res = await fetch("http://localhost:8000/auth/register", {
+    const res = await fetch("http://localhost:8000/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userName,
         email,
-        profileImage,
         password,
-        cPassword,
       }),
     });
 
     const data = await res.json();
-    localStorage.setItem("user", JSON.stringify(data.user));
-    localStorage.setItem("auth", JSON.stringify(data.auth));
-    if (data.userName) {
+    if (data.auth) {
+      localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("auth", JSON.stringify(data.auth));
       navigate("/");
+    } else {
+      alert("Please Enter Correct Details");
     }
   };
   return (
@@ -70,20 +66,8 @@ const Signup = () => {
           
           </div>
           <div className={style.right}>
-            <h2 className={style.heading}>Create Your Free Account</h2>
+            <h2 className={style.heading}>Sign In</h2>
             <form onSubmit={handleSubmit} className={style.form}>
-              <div>
-                <label htmlFor="userName">
-                  User Name<span>*</span>
-                </label>
-                <input
-                  type="text"
-                  name="userName"
-                  placeholder="Enter Your Name"
-                  value={user.userName}
-                  onChange={handleInput}
-                />
-              </div>
               <div>
                 <label htmlFor="email">
                   Email<span>*</span>
@@ -96,18 +80,7 @@ const Signup = () => {
                   onChange={handleInput}
                 />
               </div>
-              <div>
-                <label htmlFor="profileImage">
-                  Upload Phote<span>*</span>
-                </label>
-                <input
-                  type="file"
-                  name="profileImage"
-                  accept=".jpg, .jpeg, .png"
-                  // style={{ display: "none" }}
-                />
-              </div>
-              <div>
+                            <div>
                 <label htmlFor="password">
                   Password<span>*</span>
                 </label>
@@ -119,23 +92,11 @@ const Signup = () => {
                   onChange={handleInput}
                 />
               </div>
-              <div>
-                <label htmlFor="cPassword">
-                  Confirm Password<span>*</span>
-                </label>
-                <input
-                  type="password"
-                  name="cPassword"
-                  placeholder="Enter Confirm Password"
-                  value={user.cPassword}
-                  onChange={handleInput}
-                />
-              </div>
-              <Button type="submit" className={style.submit}>Sign Up</Button>
+              <Button type="submit" className={style.submit}>SIGN IN</Button>
             </form>
-            <div className={style.alreadyAccount}>
+            <div className="alreadyAccount">
               <span>
-                Already have an Account? <Link to="/signin">Sign In</Link>
+                Need an Account? <Link to="/signup">Sign Up</Link>
               </span>
             </div>
           </div>
@@ -145,4 +106,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Login;

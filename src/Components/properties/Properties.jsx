@@ -8,7 +8,11 @@ const Properties = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8000/properties")
+      .get("http://localhost:8000/properties",{
+        headers : {
+          Authorization : `Bearer ${JSON.parse(localStorage.getItem("auth"))}`
+        }
+      })
       .then((res) => {
         setData(res.data);
       })
@@ -20,6 +24,10 @@ const Properties = () => {
   return (
     <>
       <div className={style.wrapper}>
+      <div className={style.mainHeading}>
+        <h2 className={style.heading}>Properties</h2>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore impedit tenetur fugit. Nam, sed! Expedita maiores deserunt alias neque excepturi?</p>
+      </div>
         <div className={style.items}>
           {data.map((item) => {
             return (

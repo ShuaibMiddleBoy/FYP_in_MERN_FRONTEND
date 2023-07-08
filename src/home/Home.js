@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import Navbar from '../Components/navbar/Navbar';
 import Hero from '../Components/hero/Hero';
-import PopularProperties from '../Components/popularProperties/PopularProperties';
-import FeaturedProperties from '../Components/featuredProperties/FeaturedProperties';
+// import PopularProperties from '../Components/popularProperties/PopularProperties';
+// import FeaturedProperties from '../Components/featuredProperties/FeaturedProperties';
 import NewsLetter from '../Components/newsLetter/NewsLetter';
 import Footer from '../Components/footer/Footer';
 import { useNavigate } from 'react-router-dom';
+import Properties from '../Components/properties/Properties';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -16,8 +17,9 @@ const Home = () => {
     <>
         <Navbar />
                 <Hero />
-                <PopularProperties />
-                <FeaturedProperties />
+                {/* <PopularProperties /> */}
+                {/* <FeaturedProperties /> */}
+                <Properties/>
                 <NewsLetter />
                 <Footer />
     </>

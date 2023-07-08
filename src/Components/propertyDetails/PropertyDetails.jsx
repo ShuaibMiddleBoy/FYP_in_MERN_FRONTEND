@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import style from "./propertyDetails.module.css";
-import { useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 const PropertyDetails = () => {
+  const navigate = useNavigate();
   const [propertyDetails, setPropertyDetails] = useState([]);
   const {id} = useParams();
 
@@ -11,12 +13,30 @@ const PropertyDetails = () => {
   },[])
 
   const getPropertyDetails = async () => {
-    const res = await fetch(`http://localhost:8000/property/${id}`);
+    const res = await fetch(`http://localhost:8000/property/${id}`, {
+      headers : {
+        Authorization : `Bearer ${JSON.parse(localStorage.getItem("auth"))}`
+      }
+    });
     const  data = await res.json();
     setPropertyDetails(data);
   }
+  const deleteProperty = async (id) => {
+    const res = await fetch(`http://localhost:8000/property/${id}`, {
+      method : "Delete",
+      headers : {
+        Authorization : `Bearer ${JSON.parse(localStorage.getItem("auth"))}`
+      }
+    })
 
-console.log(propertyDetails);
+    const data = res.json();
+    if(data){
+      alert("data deleted");
+      navigate("/properties");
+
+    }
+
+  }
   return (
     <>
     <div className={style.wrapper}>
@@ -38,9 +58,12 @@ console.log(propertyDetails);
       <div className={style.desc}>
         <h3>Description</h3>
         <span>25x40 Brand New Triple Storey House Is Available For Sale In D-12 3        <br />CDA transfer <br /><br />Features <br />5 bedrooms </span>
-
       </div>
-    </div>
+      <Button variant="contained" onClick={()=>deleteProperty(propertyDetails._id)}>Delete Property</Button>
+      <Link to={`/update-property/${propertyDetails._id}`}>
+      <Button variant="contained">Upadet Property</Button> 
+      </Link>
+         </div>
     </div>
     </>
   )

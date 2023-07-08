@@ -9,6 +9,38 @@
     background-color: #F7F9FC;
 }
 
+.mainHeading{
+    margin-bottom: 40px;
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.mainHeading > .heading{
+    text-align: center;
+    /* background-color: red; */
+    width: 600px;
+    margin-bottom: 20px;
+    color: rgb(68, 67, 67);
+}
+
+.mainHeading > p{
+    text-align: center;
+    color: rgb(94, 93, 93);
+}
+
+.heading::after{
+    content: "\f015";
+    font-family: "Font Awesome 5 Free";
+    width: 120px;
+    height: 12px;
+    color:  #33a137;
+    display: block;
+    margin: 0  auto;
+    border-bottom: 4px solid #33a137;
+}
 
 .wrapper > .items{
     /* height: 400px; */

@@ -1,19 +1,18 @@
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 .container {
-  padding: 20px 20px;
-  background-color: gainsboro;
-  margin: 50px 0px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px gray;
+    padding: 50px;
+}
+ 
+.container > .image {
+width: 500px;
+}
+
+.container > .image > img{
+    width: 100%;
 }
 
 .details {
 margin-top: 20px;
+width: 800px;
 }
 
 .details > h3 {
