@@ -25,7 +25,7 @@ const Model = ({ closeModel }) => {
         formData.append("desc", property.desc);
         formData.append("currentOwner", currentOwner);
 
-        axios.post("http://localhost:8000/add-property")
+        axios.post("http://localhost:8000/add-property", formData)
         .then((res)=>{
           alert("Data Added")
         navigate("/properties")
