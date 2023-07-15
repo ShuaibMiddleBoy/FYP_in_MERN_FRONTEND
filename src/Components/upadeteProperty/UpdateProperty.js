@@ -8,6 +8,7 @@ const UpdateProperty = () => {
   const navigate = useNavigate();
 
     const [property, setPropertyDetails] = useState([]);
+    const [initialPhoto, setInitialPhoto] = useState(null)
     const {id} = useParams();
   
     useEffect(() => {
@@ -25,40 +26,57 @@ const UpdateProperty = () => {
   
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // const {title, type, price, desc} = property;
-      
-        // const res = await fetch(`http://localhost:8000/property/${id}`, {
-        //   method : "PUT",
-        //   headers : {
-        //     "Content-Type" : "application/json",
-        //     Authorization : `Bearer ${JSON.parse(localStorage.getItem("auth"))}`,
-        //   },
-        //   body : JSON.stringify({title, type, price, desc})
-        // })
+        const {title, type, price, desc, beds, area, image} = property;
 
-        // const data = await res.json();
-        // console.log(data);
+
+        let filename = initialPhoto
+        if (image && image !== initialPhoto) {
+            const formData = new FormData()
+            filename = image.name
+            formData.append('filename', filename)
+            formData.append('image', image)
+
+            const options = {
+              Authorization : `Bearer ${JSON.parse(localStorage.getItem("auth"))}`,
+            }
+
+            await request("/upload/image", 'POST', options, formData, true)
+        }
+
+
+
+        const res = await fetch(`http://localhost:8000/property/${id}`, {
+          method : "PATCH",
+          headers : {
+            "Content-Type" : "application/json",
+            Authorization : `Bearer ${JSON.parse(localStorage.getItem("auth"))}`,
+          },
+          body : JSON.stringify({title, type, price, desc, beds, area, image:filename})
+        })
+
+        const data = await res.json();
+        console.log(data);
         // navigate("/")
   
       }
     
     const handleChange = (e) => {
-    //     const {value, name} = e.target;
+        const {value, name} = e.target;
 
-    //     setPropertyDetails((preVale)=>{
-    //       return {
-    //         ...preVale,
-    //         [name] : value
-    //       }
-    //     })
+        setPropertyDetails((preVale)=>{
+          return {
+            ...preVale,
+            [name] : value
+          }
+        })
     }
     const handleImage = (e) => {
-    //     setPropertyDetails((preValue)=>{
-    //         return {
-    //           ...preValue,
-    //           image : e.target.files[0]
-    //         }
-    //       })
+        setPropertyDetails((preValue)=>{
+            return {
+              ...preValue,
+              image : e.target.files[0]
+            }
+          })
     }
     
       
@@ -70,6 +88,8 @@ const UpdateProperty = () => {
         <input type="text" placeholder='title' name='title' onChange={handleChange} value={property.title} />
         <input type="text" placeholder='type' name='type' onChange={handleChange} value={property.type} />
         <input type="text" placeholder='price' name='price' onChange={handleChange} value={property.price} />
+        <input type="text" placeholder='beds' name='beds' onChange={handleChange} value={property.beds} />
+        <input type="text" placeholder='area' name='area' onChange={handleChange} value={property.area} />
         <input type="file" name='image' accept=".png, .jpg, .jpeg" onChange={handleImage}/>
         <textarea name="desc" rows="10" onChange={handleChange} value={property.desc}></textarea>
         <input type="submit" value="Update" />
