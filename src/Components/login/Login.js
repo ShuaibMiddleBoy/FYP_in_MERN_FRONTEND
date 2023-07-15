@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import style from "./login.module.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import request from "../../util/fetchAPI";
 const Login = () => {
   const navigate = useNavigate();
 
@@ -33,18 +34,13 @@ const Login = () => {
     const { email, password } = user;
     console.log(email, password);
 
-    const res = await fetch("http://localhost:8000/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
+    const options = {
+      "Content-Type": "application/json",
+    }
 
-    const data = await res.json();
+    const data = await request('/auth/login', "POST", options, { email, password })
+
+
     if (data.auth) {
       localStorage.setItem("user", JSON.stringify(data.user));
       localStorage.setItem("auth", JSON.stringify(data.auth));

@@ -2,10 +2,6 @@ import React from 'react'
 import "./contact.css";
 import { Link } from 'react-router-dom';
 import heroImg from "./asset/hero.jpg";
-import TwitterIcon from '@mui/icons-material/Twitter';
-import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
 const Contact = () => {
   return (
     <div class="contact_us_2">
@@ -30,20 +26,6 @@ const Contact = () => {
           <button class="submit-btn">
             Submit
           </button>
-        </div>
-        <div class="social-media-links">
-          <Link to="/" >
-            <TwitterIcon style={{color:"36a420"}}/>
-          </Link>
-          <Link to="/">
-        <FacebookRoundedIcon style={{color:"36a420"}}/>
-          </Link>
-          <Link to="/">
-        <LinkedInIcon style={{color:"36a420"}}/>
-          </Link>
-          <Link to="/">
-            <InstagramIcon style={{color:"36a420"}}/>
-          </Link>
         </div>
       </form>
     </div>

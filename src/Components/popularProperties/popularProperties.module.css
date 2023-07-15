@@ -18,9 +18,25 @@
 }
 
 .container > .heading h1{
-    color: #4E4E4E;
+    text-align: center;
+    /* background-color: red; */
+    width: 600px;
+    margin-bottom: 20px;
+    color: rgb(68, 67, 67);
+    
 }
 
+.heading h1::after{
+    content: "\f015";
+    font-family: "Font Awesome 5 Free";
+    width: 400px;
+    height: 12px;
+    color:  #33a137;
+    display: block;
+    margin: 0  auto;
+    font-size: 24px;
+    border-bottom: 4px solid #33a137;
+}
 .container > .heading > p {
     color: gray;
     text-align: center;
@@ -37,17 +53,15 @@
 
 .container > .featuredProp > .card{
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    background-color: #F7F9FC;
+    background-color: #1261d8;
     border-radius: 5px;
     margin: 10px 0px;
-    padding: 10px 20px;
 }
 .container > .featuredProp > .card > a{
     text-decoration: none;
     background-color: #F7F9FC;
     border-radius: 5px;
-    margin: 10px 0px;
-    padding: 10px 20px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -56,8 +70,7 @@
     transition: all .4s ease-in;
 }
 .container > .featuredProp > .card > a:hover{
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-        /* background-color: white; */
+        box-shadow: 0px 0px 10px lightgray;
 }
 .container > .featuredProp > .card > a > .cardContent{
     display: flex;

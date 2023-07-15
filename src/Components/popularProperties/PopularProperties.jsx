@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import style from "./popularProperties.module.css";
 import card1 from "./asset/h1.png"
 import card2 from "./asset/h2.png"
@@ -6,24 +5,24 @@ import card3 from "./asset/h3.png"
 // import card4 from "./asset/h4.png"
 // import card5 from "./asset/h5.png"
 import {Link} from "react-router-dom";
+import { useState, useEffect } from "react";
 import request from "../../util/fetchAPI";
 
 const PopularProperties = () => {
 
-    const [numProperties, setNumProperties] = useState({});
+const [numProperties, setNumProperties] = useState({});  
 
-    useEffect(()=>{
-     const fetchNUmProperties = async () => {
-        try {
-            const data = await request("/property/find/type", "GET");
-            setNumProperties(data);
-            
-        } catch (error) {
-            console.log(error);
-        }
-     }
-     fetchNUmProperties();
-    },[])
+useEffect(()=>{
+  const fetchNumProperties = async () => {
+    try {
+      const data = await request("/property/find/types", "GET");
+      setNumProperties(data)
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+  fetchNumProperties();
+},[])
 
   return (
     <div className={style.container}>
@@ -34,29 +33,29 @@ const PopularProperties = () => {
 
 <div className={style.featuredProp}>
 <div className={style.card}>
-  <Link to="/properties?type=beach&content=1&priceRange=0" alt="">
+  <Link to="/properties?type=home" alt="">
     <img src={card1} alt="" width={"55px"}/>
     <div className={style.cardContent}>
-      <h4>Beach Properties</h4>
-      <p>{numProperties.beach} Property</p>
+      <h4>Home Properties</h4>
+      <p>{numProperties?.home} properties</p>
     </div>
     </Link>
   </div>
   <div className={style.card}>
-  <Link href="/properties?type=mountain&content=1&priceRange=0" alt="">
+  <Link to="/properties?type=house" alt="">
     <img src={card2} alt="" width={"55px"}/>
     <div className={style.cardContent}>
-      <h4>Mountain Properties</h4>
-      <p>{numProperties.village} Property</p>
+      <h4>House Properties</h4>
+      <p>{numProperties?.house} properties</p>
     </div>
     </Link>
   </div>
   <div className={style.card}>
-  <Link href="/properties?type=village&content=1&priceRange=0" alt="">
+  <Link to="/properties?type=home" alt="">
     <img src={card3} alt="" width={"55px"}/>
     <div className={style.cardContent}>
-      <h4>Mountain Properties</h4>
-      <p>{numProperties.mountain} Property</p>
+      <h4>Home Properties</h4>
+      <p>{numProperties?.home} properties</p>
     </div>
     </Link>
   </div>

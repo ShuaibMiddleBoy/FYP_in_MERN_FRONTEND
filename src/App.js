@@ -48,7 +48,7 @@ const App = () => {
               }
             />
             <Route
-              path="/property-details/:id"
+              path="/property/find/:id"
               element={
                 <>
                   <Navbar /> <PropertyDetails /> <Footer />
@@ -56,7 +56,7 @@ const App = () => {
               }
             />
             <Route
-              path="/update-property/:id"
+              path="/property/:id"
               element={
                 <>
                   <Navbar /> <UpdateProperty /> <Footer />

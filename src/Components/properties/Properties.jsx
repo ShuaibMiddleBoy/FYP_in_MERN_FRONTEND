@@ -1,25 +1,22 @@
 import React, { useEffect, useState } from "react";
 import style from "./properties.module.css";
-import axios from "axios";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Link } from "react-router-dom";
+import request from "../../util/fetchAPI";
 const Properties = () => {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/properties",{
-        headers : {
-          Authorization : `Bearer ${JSON.parse(localStorage.getItem("auth"))}`
-        }
-      })
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  const [properties, setAllProperties] = useState([]);
+  
+
+    // fetch all properties
+    useEffect(() => {
+      const fetchAllProperties = async() => {
+        const data = await request(`/property/getAll`, 'GET')
+        setAllProperties(data)
+      }
+      fetchAllProperties()
+    }, [])
+
 
   return (
     <>
@@ -29,9 +26,9 @@ const Properties = () => {
       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore impedit tenetur fugit. Nam, sed! Expedita maiores deserunt alias neque excepturi?</p>
       </div>
         <div className={style.items}>
-          {data.map((item) => {
+          {properties.map((item) => {
             return (
-              <Link to={`/property-details/${item._id}`}>
+              <Link to={`/property/find/${item._id}`}>
               <div className={style.item}>
                 <div className={style.image}>
                   <img

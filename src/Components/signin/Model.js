@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import style from "./model.module.css";
-
+import request from "../../util/fetchAPI";
 const MyModel = ({ closeModel }) => {
   const navigate = useNavigate();
   useEffect(() => {
@@ -36,20 +36,14 @@ const MyModel = ({ closeModel }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = user;
-    console.log(email, password);
 
-    const res = await fetch("http://localhost:8000/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
+    const options = {
+      "Content-Type": "application/json",
+    }
 
-    const data = await res.json();
+    const data = await request('/auth/login', "POST", options, { email, password })
+
+
     if (data.auth) {
       localStorage.setItem("user", JSON.stringify(data.user));
       localStorage.setItem("auth", JSON.stringify(data.auth));

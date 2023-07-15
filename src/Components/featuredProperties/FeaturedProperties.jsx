@@ -9,6 +9,7 @@ import img4 from "./asset/p-4.png";
 import img5 from "./asset/p-5.png";
 import img6 from "./asset/p-6.png";
 import request from "../../util/fetchAPI";
+import { Link } from 'react-router-dom';
 
 const FeaturedProperties = () => {
     const [featuredProperties, setFeaturedProperties] = useState([]);
@@ -34,26 +35,26 @@ const FeaturedProperties = () => {
         <div className={style.grid}>
         {featuredProperties.map((property)=>{
         return(
-            <div key={property._id} className={style.box}>
+            <Link to={`/property/find/${property._id}`} key={property._id} className={style.box}>
                 <div className={style.image}>
-                    <img src={img1} alt="" /> {/* https://localhost:8000/images/${property.image} */}
+                    <img src={`http://localhost:8000/images/${property?.image}`}  alt="" /> 
                 </div>
                 <div className={style.text}>
                  <div className={style.category}>
                  <span>For Rent</span>
                  <FavoriteIcon className={style.favoriteIcon}/>
                  </div>
-                 <h4>Red Carpet Real Estate</h4>
-                 <p>Ring road peshawar</p>
+                 <h4>{property?.type}</h4>
+                 <p>{property?.title}</p>
                 </div>
                 <div className={style.button}>
                 <div>
-                <Button variant="contained" className={style.btn}>{property.price}</Button>
-                    <label htmlFor="">/sqft</label>
+                <Button variant="contained" className={style.btn}>{property?.price}</Button>
+                    <label htmlFor="">/pkr</label>
                     </div>
                     <span>Apartment</span>
                 </div>
-            </div>)    
+            </Link>)    
         })}
             {/* <div className={style.box}>
                 <div className={style.image}>

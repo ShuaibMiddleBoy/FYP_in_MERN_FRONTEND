@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import style from "./signup.module.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import request from "../../util/fetchAPI";
 const Signup = () => {
   const navigate = useNavigate();
 
@@ -16,10 +17,11 @@ const Signup = () => {
   const [user, setUser] = useState({
     userName: "",
     email: "",
-    profileImage: "",
     password: "",
     cPassword: "",
   });
+
+  const [image, setImage] = useState("");
 
   const handleInput = (e) => {
     const { value, name } = e.target;
@@ -33,24 +35,25 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    let filename = null;
+    if(image){
+      const formData = new FormData();
+      filename = crypto.randomUUID()+image.name;
+      formData.append("filename", filename);
+      formData.append("image", image);
 
-    const { userName, email, profileImage, password, cPassword } = user;
+      await request("/upload/image", "POST", {}, formData, true)
+    }else{
+      return
+    }
 
-    const res = await fetch("http://localhost:8000/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userName,
-        email,
-        profileImage,
-        password,
-        cPassword,
-      }),
-    });
+    const headers = {
+      "Content-Type":"application/json"
+    }
 
-    const data = await res.json();
+    const data = await request("/auth/register", "POST", headers, {...user, "profileImage":filename});
+
     localStorage.setItem("user", JSON.stringify(data.user));
     localStorage.setItem("auth", JSON.stringify(data.auth));
     if (data.userName) {
@@ -97,12 +100,14 @@ const Signup = () => {
                 />
               </div>
               <div>
-                <label htmlFor="profileImage">
+                <label htmlFor="image">
                   Upload Phote<span>*</span>
                 </label>
                 <input
                   type="file"
-                  name="profileImage"
+                  id="image"
+                  name="image"
+                  onChange={(e)=>{setImage(e.target.files[0])}}
                   accept=".jpg, .jpeg, .png"
                   // style={{ display: "none" }}
                 />

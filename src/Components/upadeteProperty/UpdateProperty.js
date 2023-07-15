@@ -2,57 +2,63 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import style from "./updateProperty.module.css";
 import {useNavigate, useParams} from "react-router-dom";
+import request from '../../util/fetchAPI';
 const UpdateProperty = () => {
 
   const navigate = useNavigate();
 
-    const [property, setProperty] = useState([]);
+    const [property, setPropertyDetails] = useState([]);
     const {id} = useParams();
   
-    useEffect(()=>{
-      getProperty();
-    },[])
+    useEffect(() => {
+      const fetchPropertyDetails = async () => {
+          try {
+              const data = await request(`/property/find/${id}`, 'GET')
+              setPropertyDetails(data)
+          } catch (error) {
+              console.error(error)
+          }
+      }
+      fetchPropertyDetails()
+  }, [id])
   
-    const getProperty = async () => {
-      const res = await fetch(`http://localhost:8000/property/${id}`);
-      const  data = await res.json();
-      setProperty(data);
-    }
+  
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const {title, type, price, desc} = property;
+        // const {title, type, price, desc} = property;
       
-        const res = await fetch(`http://localhost:8000/update-property/${id}`, {
-          method : "PUT",
-          headers : {
-            "Content-Type" : "application/json",
-            Authorization : `Bearer ${JSON.parse(localStorage.getItem("auth"))}`,
-          },
-          body : JSON.stringify({title, type, price, desc})
-        })
+        // const res = await fetch(`http://localhost:8000/property/${id}`, {
+        //   method : "PUT",
+        //   headers : {
+        //     "Content-Type" : "application/json",
+        //     Authorization : `Bearer ${JSON.parse(localStorage.getItem("auth"))}`,
+        //   },
+        //   body : JSON.stringify({title, type, price, desc})
+        // })
 
-        const data = await res.json();
-        navigate("/")
+        // const data = await res.json();
+        // console.log(data);
+        // navigate("/")
   
       }
     
     const handleChange = (e) => {
-        const {value, name} = e.target;
+    //     const {value, name} = e.target;
 
-        setProperty((preVale)=>{
-          return {
-            ...preVale,
-            [name] : value
-          }
-        })
+    //     setPropertyDetails((preVale)=>{
+    //       return {
+    //         ...preVale,
+    //         [name] : value
+    //       }
+    //     })
     }
     const handleImage = (e) => {
-        setProperty((preValue)=>{
-            return {
-              ...preValue,
-              image : e.target.files[0]
-            }
-          })
+    //     setPropertyDetails((preValue)=>{
+    //         return {
+    //           ...preValue,
+    //           image : e.target.files[0]
+    //         }
+    //       })
     }
     
       

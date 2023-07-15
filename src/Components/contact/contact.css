@@ -51,6 +51,10 @@
     border: 1px solid lightgrey;
     color: gray;
 }
+
+.inputContainer > input::placeholder{
+  color: gray;
+}
 .inputContainer > textarea{
     border: 1px solid lightgrey;
     padding: 15px 5px;
@@ -60,6 +64,10 @@
     resize: none;
     height: 150px;
     border-radius: 5px;
+}
+
+.inputContainer > textarea::placeholder{
+  color: gray;
 }
 
 .heading::after{
