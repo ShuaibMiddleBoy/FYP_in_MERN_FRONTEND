@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/navbar/Navbar";
-import Hero from "./Components/hero/Hero";
 import FeaturedProperties from "./Components/featuredProperties/FeaturedProperties";
 import Footer from "./Components/footer/Footer";
 import Properties from "./Components/properties/Properties";
@@ -14,6 +13,7 @@ import Home from "./home/Home";
 import AddProperty from "./Components/addProperty/Addproperty";
 import UpdateProperty from "./Components/upadeteProperty/UpdateProperty";
 import Contact from "./Components/contact/Contact";
+import TypeHome from "./Components/type/Type";
 const App = () => {
   return (
     <>
@@ -80,6 +80,18 @@ const App = () => {
                   <Footer />
                 </>
               }
+            />
+                  <Route
+              path="/property/find"
+              element={
+                <>
+                  <Navbar />
+                <TypeHome/>
+                  <Footer />
+                </>
+              }
+
+              
             />
           </Route>
           <Route

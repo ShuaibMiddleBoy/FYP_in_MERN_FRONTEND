@@ -30,11 +30,24 @@
     flex-direction: column;
 }
 
-  .heading{
-    text-align: center;
-    width: 600px;
-    margin-bottom: 20px;
-    color: rgb(68, 67, 67);
+.heading {
+  text-align: center;
+  width: 600px;
+  height: 60px;
+  color: rgb(68, 67, 67);
+  
+}
+
+.heading h1::after{
+  content: "\f015";
+  font-family: "Font Awesome 5 Free";
+  width: 320px;
+  height: 12px;
+  color:  #33a137;
+  display: block;
+  margin: 0  auto;
+  font-size: 24px;
+  border-bottom: 4px solid #33a137;
 }
 
 .inputContainer{

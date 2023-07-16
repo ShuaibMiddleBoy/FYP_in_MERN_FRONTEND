@@ -1,7 +1,7 @@
 .container{
     background-color: #F7F9FC;
     width: 100vw;
-    padding: 30px 0px;
+    padding: 50px 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,9 +19,8 @@
 
 .container > .heading h1{
     text-align: center;
-    /* background-color: red; */
     width: 600px;
-    margin-bottom: 20px;
+    height: 80px;
     color: rgb(68, 67, 67);
     
 }
@@ -31,6 +30,7 @@
     font-family: "Font Awesome 5 Free";
     width: 400px;
     height: 12px;
+    /* overflow: hidden; */
     color:  #33a137;
     display: block;
     margin: 0  auto;

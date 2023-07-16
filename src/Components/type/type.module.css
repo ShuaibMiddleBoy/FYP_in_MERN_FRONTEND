@@ -19,8 +19,9 @@
 
 .container > .heading h1{
     text-align: center;
+    /* background-color: red; */
     width: 600px;
-    height: 80px;
+    margin-bottom: 20px;
     color: rgb(68, 67, 67);
     
 }
@@ -45,13 +46,13 @@
     display: grid;
     align-items: center;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
 }
 
 .container > .grid > .box{
     width: 340px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 2px;
+    margin: 20px 20px;
 }
 .container > .grid > .box > .image > img{
 width: 100%;
@@ -97,7 +98,7 @@ width: 100%;
 }
 .container > .grid > .box > .button .btn{
     background-color: #33A137;
-    width: 120px;
+    width: 100px;
     height: 40px;
 }
 

@@ -5,8 +5,9 @@ import FeaturedProperties from '../Components/featuredProperties/FeaturedPropert
 import NewsLetter from '../Components/newsLetter/NewsLetter';
 import Footer from '../Components/footer/Footer';
 import { useNavigate } from 'react-router-dom';
-import Properties from '../Components/properties/Properties';
 import PopularProperties from "../Components/popularProperties/PopularProperties";
+import YourCity from "../Components/yourCity/YourCity";
+import Post from "../Components/post/Post";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -19,7 +20,8 @@ const Home = () => {
                 <Hero />
                 <PopularProperties />
                 <FeaturedProperties />
-                <Properties/>
+                <Post/>
+                <YourCity/>
                 <NewsLetter />
                 <Footer />
     </>

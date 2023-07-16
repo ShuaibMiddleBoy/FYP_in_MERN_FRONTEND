@@ -4,7 +4,7 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  padding: 50px 0px;
+  padding: 50px 100px;
   background-color: #f7f9fc;
 }
 
@@ -19,9 +19,8 @@
 
 .mainHeading > .heading {
   text-align: center;
-  /* background-color: red; */
   width: 600px;
-  margin-bottom: 20px;
+  height: 80px;
   color: rgb(68, 67, 67);
 }
 

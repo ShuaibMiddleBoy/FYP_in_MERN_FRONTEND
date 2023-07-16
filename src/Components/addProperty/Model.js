@@ -14,7 +14,7 @@ const Model = ({ closeModel }) => {
     image: "",
     area: "",
     beds: "",
-    city : "",
+    city: "",
   });
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,39 +22,38 @@ const Model = ({ closeModel }) => {
     const { title, type, desc, price, image, area, beds, city } = property;
 
     const token = JSON.parse(localStorage.getItem("auth"));
-  try {
-  
-    let filename = null;
-    if(image){
-      const formData = new FormData();
-      filename = image.name;
-      formData.append('filename', filename)
-                formData.append('image', image)
-                const options = {
-                  "Authorization": `Bearer ${token}`,
-              }
+    try {
+      let filename = null;
+      if (image) {
+        const formData = new FormData();
+        filename = image.name;
+        formData.append("filename", filename);
+        formData.append("image", image);
+        const options = {
+          Authorization: `Bearer ${token}`,
+        };
 
-              await request("/upload/image", 'POST', options, formData, true)
+        await request("/upload/image", "POST", options, formData, true);
+      }
+
+      const options = {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      };
+
+      const data = await request("/property", "POST", options, {
+        ...property,
+        image: filename,
+      });
+      if (data) {
+        alert("Property Added");
+        navigate("/");
+      } else {
+        alert("Sorry");
+      }
+    } catch (error) {
+      console.log(error);
     }
-
-    const options = {
-      "Authorization": `Bearer ${token}`,
-      "Content-Type": 'application/json'
-  }
-
-
-  const data = await request("/property", 'POST', options, { ...property, image: filename })
-  if(data){
-    alert("Property Added")
-    navigate("/");
-  }else{
-    alert("Sorry")
-  }
-    
-  } catch (error) {
-    console.log(error);
-  }
-
   };
 
   const handleChange = (e) => {
@@ -92,13 +91,18 @@ const Model = ({ closeModel }) => {
             onChange={handleChange}
             value={property.title}
           />
-          <input
+          <select name="type" onChange={handleChange}>
+          <option>Select a property type</option>
+            <option value="home">Home</option>
+            <option value="house">House</option>
+          </select>
+          {/* <input
             type="text"
             placeholder="type"
             name="type"
             onChange={handleChange}
             value={property.type}
-          />
+          /> */}
           <input
             type="text"
             placeholder="price"
@@ -113,13 +117,22 @@ const Model = ({ closeModel }) => {
             onChange={handleChange}
             value={property.area}
           />
-            <input
+          {/* <input
             type="text"
             placeholder="city"
             name="city"
             onChange={handleChange}
             value={property.city}
-          />
+          /> */}
+
+          <select name="city" onChange={handleChange}>
+          <option>Select a city</option>
+            <option value="islamabad">Islamabad</option>
+            <option value="lahore">Lahore</option>
+            <option value="karachi">Karachi</option>
+            <option value="peshawar">Peshawar</option>
+            <option value="swat">Swat</option>
+          </select>
           <input
             type="number"
             placeholder="beds"

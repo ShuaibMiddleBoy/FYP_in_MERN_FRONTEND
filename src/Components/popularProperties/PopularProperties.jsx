@@ -9,8 +9,8 @@ import { useState, useEffect } from "react";
 import request from "../../util/fetchAPI";
 
 const PopularProperties = () => {
-
 const [numProperties, setNumProperties] = useState({});  
+
 
 useEffect(()=>{
   const fetchNumProperties = async () => {
@@ -33,7 +33,7 @@ useEffect(()=>{
 
 <div className={style.featuredProp}>
 <div className={style.card}>
-  <Link to="/properties?type=home" alt="">
+  <Link to={`/property/find/?type=home`} alt="">
     <img src={card1} alt="" width={"55px"}/>
     <div className={style.cardContent}>
       <h4>Home Properties</h4>
@@ -42,7 +42,7 @@ useEffect(()=>{
     </Link>
   </div>
   <div className={style.card}>
-  <Link to="/properties?type=house" alt="">
+  <Link to="/property/find?type=house" alt="">
     <img src={card2} alt="" width={"55px"}/>
     <div className={style.cardContent}>
       <h4>House Properties</h4>
@@ -51,7 +51,7 @@ useEffect(()=>{
     </Link>
   </div>
   <div className={style.card}>
-  <Link to="/properties?type=home" alt="">
+  <Link to="/property/find?type=home" alt="">
     <img src={card3} alt="" width={"55px"}/>
     <div className={style.cardContent}>
       <h4>Home Properties</h4>
