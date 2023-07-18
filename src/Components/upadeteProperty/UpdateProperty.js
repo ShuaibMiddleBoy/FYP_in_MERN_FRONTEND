@@ -57,9 +57,9 @@ const UpdateProperty = () => {
       }),
     });
 
-    const data = await res.json();
-    console.log(data);
-    // navigate("/")
+    await res.json();
+    alert('data updated')
+    navigate("/")
   };
 
   const handleChange = (e) => {

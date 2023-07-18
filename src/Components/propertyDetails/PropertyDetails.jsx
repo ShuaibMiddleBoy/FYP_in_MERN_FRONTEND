@@ -43,11 +43,11 @@ const PropertyDetails = () => {
       <div className={style.details}>
       <h3>Details</h3>
           <ul className={style.grid}>
-<li><span>Type:</span><span>House</span></li>
-<li><span>Area:</span><span>4.4Marla</span></li>
-<li><span>Price:</span><span>${propertyDetails?.price}</span></li>
+<li><span>Type:</span><span>{propertyDetails.type}</span></li>
+<li><span>Area:</span><span>{propertyDetails.area}</span></li>
+<li><span>Price:</span><span>{propertyDetails?.price}</span></li>
 <li><span>Purpose:</span><span>For Sale</span></li>
-<li><span>Location:</span><span>Islamabad</span></li>
+<li><span>Location:</span><span>{propertyDetails.city}</span></li>
 <li><span>Bedroom(s):</span><span>5</span></li>
           </ul>
       </div>
